@@ -1,38 +1,541 @@
-.App {
-  text-align: center;
+.carousel .carousel-item {
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Default Styles for Sidebar */
+.sidebar {
+  transition: all 0.5s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.cart-icon {
+  color: blueviolet;
+  cursor: pointer; 
+}
+.cart-icon:hover {
+  color: goldenrod;
+  cursor: pointer; 
+}
+.cart-icon:active {
+  color: goldenrod;
+  cursor: pointer; 
+}
+
+.card-manipulate{
+  position: absolute;
+  top: -7;
+  left: 3px;
+  flex-direction: column;
+}
+.card-events{
+  position: relative;
+}
+.c-manipulate{
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 2px;
+  border: 1px solid black;
+}
+
+.c-manipulate:hover , .c-manipulate:active{
+  background-color: black;
+  height: 40px;
+  width: 40px;
+}
+.delete-icon{
+color: red;
+cursor: pointer;
+}
+
+.delete-icon:hover , .delete-icon:active{
+color: goldenrod;
+cursor: pointer;
+}
+.spinner-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+}
+@media screen and (min-width: 768px) {
+  .sidebar {
+    width: 260px;
+    padding: 80px 20px;
+  }
+  .sidebar.close {
+    width: 260px; /* Ensure sidebar width stays consistent */
+    display: block;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* For Small Screens, Sidebar is Toggled */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 0;
+    display: none;
+  }
+  .sidebar.open {
+    width: 260px;
+    display: block;
+  }
+}
+
+.money-main-container{
+  padding-bottom: 20px;
+}
+.flex-card{
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+}
+.rounded-circle{
+  border-radius: 20% ;
+}
+.left-card{
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-evenly;
+}
+@media (width > 760px) {
+  
+  .profile-main{
+    position: absolute;
+    left: 100px;
+  }
+}
+.crd-btm{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.carousel-item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 500px;
+}
+
+.table-container {
+  margin: 20px;
+}
+  
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  min-width: 600px; /* Ensures table has a minimum width for better readability */
+}
+
+.event-title {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+}
+
+@media (width < 500px) {
+ .carousel .carousel-item {
+  height: 100vh;
+}
+
+.carousel-item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 500px;
+}
+}
+
+.explore{
+    color: white;
+    font-size: 30px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-inner {
+  width: 95vw;
+  
+}
+
+.carousel-item{
+border-radius: 30px;
+}
+
+.text{
+padding-top: 30px;
+background-color: white;
+height: 100px;
+width: 95vw;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(111.3deg, rgb(74, 105, 187) 9.6%, rgb(205, 77, 204) 93.6%);
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+ 
+.explore{
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.cardEvents{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+.background {
+  
+  background-image: url('https://via.placeholder.com/1920x1080');
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  z-index: -1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+i{
+  color: black;
+  font-size: 30px;
+  color: goldenrod;
+}
+
+.text-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  border: 1px solid #ffd700; /* Golden border */
+  color: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+h1{
+  font-size: 20px;
+  margin: 0;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.nav-item a:hover i {
+    color: red; /* Change to the desired color */
+}
+
+
+@media screen and (max-width: 768px) {
+  h1 ,p {
+    font-size: 20px;
   }
-  to {
-    transform: rotate(360deg);
+  p {
+    font-size: 15px;
+  }
+}
+
+.checkbox-container{
+  display: flex;
+  
+}
+@media (width<700px) {
+  .navbar-collapse {
+  position: absolute;
+  top: 100%;
+  background: linear-gradient(to bottom right, #8a2be2, #4b0082);
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-top: 1px solid #dee2e6;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 2px solid gold;
+  border-radius: 10px ;
+}
+
+.navbar-nav {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar-nav .nav-item {
+  margin-bottom: 10px;
+  border-radius: 30px ;
+  border: 2px solid gold;
+}
+
+
+.card-bottom{
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+}
+}
+.navbar-brand {
+  font-family: 'Arial', sans-serif; /* Example font family */
+  font-size: 24px; /* Example font size */
+  font-weight: bold; /* Example font weight */
+  color: #333; /* Example text color */
+}
+.main{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+} 
+
+.card {
+  cursor: pointer;
+  /* background-color:  #8a2be2;; White background for the cards */
+  border-radius: 15px; /* Rounded corners for the cards */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow for the cards */
+  border: 1px solid #ffd700; /* Golden border */
+  overflow : hidden;
+}
+.card-img-top {
+   /* Larger width for the images */
+  height: 200px; /* Height remains the same */
+  object-fit: cover;
+  margin: auto;
+}
+.card-img-top{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  animation: blink 1s infinite alternate; /* Blinking effect */
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+
+.footer {
+  background-color: #8a2be2; /* Violet background color */
+  color: white; /* White text color */
+  padding: 10px 0; /* Padding for top and bottom */
+  text-align: center; /* Center-align text */
+  bottom: 0;
+  width: 100%;
+  border: 1px solid #ffd700; /* Golden border */
+}
+.footer p {
+  margin-bottom: 0; /* Remove bottom margin for paragraphs */
+}
+    
+        .table-container {
+            margin: 20px;
+        }
+
+        .table-responsive {
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 600px; /* Ensures table has a minimum width for better readability */
+        }
+
+@media (width>1000px) {
+  
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    position: relative;
+  }
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: row;
+    position: absolute;
+    right: 230px;
+}
+  .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+    position: relative;
+  }
+  .d-flex {
+    display: flex!important;
+    position: absolute;
+    right: 0px;
+}
+.navbar-brand {
+  position: absolute;
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  left: 132px;
+}
+.navbar i{
+  font-size: 40px;
+}
+}
+
+/* Add right margin for desktop view */
+@media screen and (min-width: 701px) {
+.profile-heading {
+    margin-right: 20px; /* Adjust margin value as needed */
+}
+}
+
+.container-footer {
+  position: relative;
+  margin-top: 20px;
+}
+
+.card-footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-text {
+  font-size: 18px;
+  color: #fff;
+  background-color: #6a1b9a;
+  padding: 10px;
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.container-footer-padding {
+  padding-bottom: 80px; /* Adjust this according to your footer height */
+}
+
+
+@media (width > 770px) and (width <880px) {
+  .text-container{
+    position: relative;
+    left: 30px;
+  }
+  video{
+    position: relative;
+    left: 30px;
+  }
+  .left-card{
+    position: relative;
+    left: 40px;
+    width: 100%;
+  }
+}
+
+@media (width > 990px) and (width <1100px) {
+  .text-container{
+    position: relative;
+    width: 900px;
+    left: 40px;
+  }
+  video{
+    position: relative;
+    left: 40px;
+  }
+  .left-card{
+    position: relative;
+    width: 100%;
+    left: 50px;
+  }
+}
+@media (width > 1200px) and (width <1288px) {
+  .text-container{
+    position: relative;
+    width: 1000px;
+    left: 50px;
+  }
+  video{
+    position: relative;
+    left: 50px;
+  }
+  .left-card{
+    position: relative;
+    width: 100%;
+    left: 60px;
+  }  
+}
+@media (width > 1400px) and (width <1488px) {
+  .text-container{
+    position: relative;
+    width: 1200px;
+    left: 60px;
+  }
+  video{
+    position: relative;
+    left: 60px;
+  }
+  .left-card{
+    position: relative;
+    width: 100%;
+    left: 70px;
+  }   
+}
+
+/* Footer */
+.footer-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 70%;
+  translate: 10%;
+  z-index: 10;
+  background-color: #f8f9fa;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.rules-container {
+  padding-bottom: 120px; /* Ensures no overlap with the footer */
+}
+
+@media (width < 540px) {
+  .footer-wrapper {
+    width: 90%;
+    translate: 0;
+  }
+  .flex-card-title{
+    font-size: small;
   }
 }
