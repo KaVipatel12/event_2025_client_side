@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
+  useEffect(() => {
   const userAuthentication = async () => {
     try {
       if (token) {
@@ -40,8 +41,6 @@ export const AuthProvider = ({ children }) => {
       console.log(err);
     }
   };
-
-  useEffect(() => {
     userAuthentication();
   }, [token]);
 

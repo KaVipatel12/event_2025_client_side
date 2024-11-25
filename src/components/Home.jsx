@@ -6,9 +6,10 @@ import HomeTexts from './HomeTexts';
 import HomeImageCard from './HomeImageCard';
 function Home() {
   const images = [
-    '/Images/3.jpg',
-    '/Images/1.png',
-    '/Images/4.jpg'
+    '/Images/1',
+    '/Images/2',
+    '/Images/3',
+    '/Images/4'
   ];
   const text = [
     "Experience the thrill of competition in technical field as well as non-tech field. Join us in celebrating athleticism and sportsmanship as our college hosts an array of dynamic sports events for all to enjoy."

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../Auth.css";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import ReCAPTCHA from "react-google-recaptcha"
 
@@ -112,7 +112,7 @@ function Login() {
               </div>
 
               <div className="pass-link">
-                <a href="/verifyemail">Forgot password?</a>
+                <Link to="/verifyemail">Forgot password?</Link>
               </div>
             </div>
 
@@ -132,7 +132,7 @@ function Login() {
             )}
 
             <div className="signup-link">
-              Not a member? <a href="register">Signup now</a>
+              Not a member? <Link to="register">Signup now</Link>
             </div>
           </form>
         </div>

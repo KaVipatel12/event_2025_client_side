@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import DeleteCart from './DeleteCart';
 import { useAuth } from '../store/Auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from './Loading';
 import EventPrice from './EventPrice';  // Import the new EventPrice component
@@ -31,7 +31,7 @@ const hasTechnicalEvent = (cartItems) => {
 
 // Calculate the total cost
 // Calculate the total cost
-const fetchCart = async () => {
+const fetchCart = useCallback(async () => {
   try {
     const response = await fetch(`${API_URL}/api/event/cart`, {
       method: "GET",
@@ -86,12 +86,12 @@ const fetchCart = async () => {
       navigate(-1);
     }, 2000);
   }
-};
+}, [token, navigate]);
 
   useEffect(() => {
     fetchCart();
     document.title = 'Eminance 2025- Cart Page'; // Update the title
-  }, []);
+  }, [fetchCart]);
   
   const fetchPurchaseEvent = async () => {
     if (cart && cart.length > 0) {
@@ -198,9 +198,9 @@ const fetchCart = async () => {
                     <div className="card-body">
                       <h5 className="card-title purchase-footer">
                         Participation Fees: ₹{totalCost}
-                        <a href="#" id="totalAmountButton" className="btn btn-success" onClick={fetchPurchaseEvent}>
+                        <Link to="#" id="totalAmountButton" className="btn btn-success" onClick={fetchPurchaseEvent}>
                           Checkout
-                        </a>
+                        </Link>
                       </h5>
                     </div>
                   </div>

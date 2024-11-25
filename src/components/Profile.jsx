@@ -3,6 +3,7 @@ import { useAuth } from '../store/Auth'; // Custom Auth hook
 import Navbar from './Navbar';          // Navbar component
 import jsPDF from 'jspdf';              // For PDF generation
 import 'jspdf-autotable';               // For table formatting in PDF
+import { Link } from 'react-router-dom';
 
 function Profile() {
   const { User } = useAuth();           // Access user data from context or state
@@ -66,19 +67,19 @@ function Profile() {
       <div className='profile-main'>
         <div className="col-md-3 border-right">
           <div className="d-flex flex-column align-items-center text-center p-3 py-0">
-            <img className="mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" style={{ borderRadius: "20%" }} />
+            <img className="mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" style={{ borderRadius: "20%" }} alt="profile pic" />
             <span className="font-weight-bold my-3" style={{ color: "white" }}>
               {loggedin ? email : "Unknown"}
             </span>
             <div>
               {!loggedin && (
                 <>
-                  <a href="/register" className="mx-2">
+                  <Link to="/register" className="mx-2">
                     <button type="button" className="btn btn-warning my-2">Register</button>
-                  </a>
-                  <a href="/login">
+                  </Link>
+                  <Link to="/login">
                     <button type="button" className="btn btn-primary my-2">Login</button>
-                  </a>
+                  </Link>
                 </>
               )}
             </div>

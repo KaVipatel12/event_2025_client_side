@@ -10,7 +10,10 @@ function Carousel({ images }) {
             className={`carousel-item ${index === 0 ? 'active' : ''}`}
             data-bs-interval="2000"
           >
-            <img src={image} className="d-block w-100 h-100" alt={`Slide ${index + 1}`} />
+            <picture>
+              <source srcSet={`${image}-mobile.jpg`} media="(max-width: 768px)" />
+              <img src={`${image}-large.jpg`} className="d-block w-100 h-100" alt={`Slide ${index + 1}`} />
+            </picture>
           </div>
         ))}
       </div>

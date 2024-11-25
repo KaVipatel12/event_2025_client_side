@@ -49,7 +49,7 @@ function Cart({ formId, category }) {
 
   return (
     <i
-      className="action action-button ri-shopping-cart-2-fill cart-icon"
+      className="action action-button ri-shopping-cart-2-fill cart-icon press-effect"
       onClick={cartClick}
     />
   );

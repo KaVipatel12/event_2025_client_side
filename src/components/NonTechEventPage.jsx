@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Carousel from './Carousel';
+import React, { useCallback, useEffect, useState } from 'react';
 import HomeTexts from './HomeTexts';
 import Video from './Video';
 import Navbar from './Navbar';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from '../store/Auth';
 import Loading from './Loading';
@@ -19,9 +18,8 @@ function NonTechEventPage() {
   const [loading, setLoader] = useState(true);
   const [nonTechFree, setNonTechPrice] = useState(true);
   const { User, purchaseEventsFromMainPage } = useAuth();
-  const images = ["/Images/1.jpg", "/Images/2.jpg", "/Images/3.jpg"];
 
-  const fetchEvent = async () => {
+  const fetchEvent = useCallback(async () => {
     try {
       const response = await fetch(`${API_URL}/api/event/nontechnicalevents/${nontechnicalevent}`, {
         method: 'GET',
@@ -49,11 +47,11 @@ function NonTechEventPage() {
         theme: "light",
       });
     }
-  };
+  }, [nontechnicalevent]);
 
   useEffect(() => {
     fetchEvent();
-  }, []);
+  }, [fetchEvent, nontechnicalevent]);
 
   useEffect(() => {
     if (User && User.purchaseProduct) {
@@ -78,7 +76,7 @@ function NonTechEventPage() {
   };
   useEffect(() => {
     document.title = `Eminance 2025 - ${nontechnicalevent.split("_").join(" ")}` || "Eminance 2025";
-     }, []);
+     }, [nontechnicalevent]);
   return (
     <>
       <Navbar />

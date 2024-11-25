@@ -61,7 +61,7 @@ function ChangePassword() {
             <div className="container" style={{ maxWidth: '500px', margin: 'auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                 <form onSubmit={updatePasswordAuth}>
                     <div className="mb-3" style={{ marginBottom: '15px' }}>
-                        <label htmlFor="exampleInputEmail1" className="form-label" style={{ fontWeight: 'bold', color: '#333', display: 'block', marginBottom: '5px', color : "white" }}>
+                        <label htmlFor="exampleInputEmail1" className="form-label" style={{ fontWeight: 'bold', color: '#333', display: 'block', marginBottom: '5px'}}>
                             Enter the new password
                         </label>
                         <input

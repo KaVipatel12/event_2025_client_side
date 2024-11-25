@@ -2,6 +2,16 @@
   height: 100vh;
 }
 
+/* Press effect */
+.press-effect {
+  transition: transform 0.1s ease;
+}
+
+.press-effect:active {
+  transform: scale(0.9);  /* Slightly reduces the size on click */
+}
+
+
 /* Default Styles for Sidebar */
 .sidebar {
   transition: all 0.5s ease;

@@ -3,7 +3,7 @@ import useRef from 'react';
 import "../Auth.css";
 import { useAuth } from "../store/Auth";
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha"
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -190,7 +190,7 @@ function Registration() {
           </div>
            )}
           <div className="signup-link">
-            Already have an Account? <a href="/login">Login now</a>
+            Already have an Account? <Link to="/login">Login now</Link>
           </div>
         </form>
       </div>

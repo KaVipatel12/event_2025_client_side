@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '../store/Auth';
 import { toast } from 'react-toastify';
 import Navbar from './Navbar';
@@ -8,17 +8,16 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Import autoTable plugin
 
 const API_URL = process.env.REACT_APP_API_URL;
+const token = localStorage.getItem("token");
 
 function ParticipantList() {
-  const token = localStorage.getItem("token");
   const { User } = useAuth();
-  const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoader] = useState(true);
   const navigate = useNavigate();
-
-  const fetchParticipantList = async () => {
+ 
+  const fetchParticipantList = useCallback(async () => {
     try {
       const response = await fetch(`${API_URL}/api/admin/participantlist`, {
         method: 'GET',
@@ -36,10 +35,9 @@ function ParticipantList() {
       if (!response.ok) {
         setLoader(false);
         toast.error(result.msg);
-        navigate("/");
+        navigate("/home");
       } else {
         setLoader(false);
-        setData(result.participantsWithEvents);
         setFilteredData(result.participantsWithEvents);
       }
     } catch (error) {
@@ -47,7 +45,7 @@ function ParticipantList() {
       setLoader(false);
       toast.error("There is some error in the server, please try again later");
     }
-  };
+  }, [navigate]);
 
   const downloadPDF = () => {
     const doc = new jsPDF();
@@ -83,7 +81,7 @@ function ParticipantList() {
     if (User) {
       fetchParticipantList();
     }
-  }, [User]);
+  }, [User, fetchParticipantList]);
 
   useEffect(() => {
     document.title = `Eminance 2025 - Participant List`;

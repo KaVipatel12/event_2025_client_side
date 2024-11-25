@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import SearchBar from './SearchBar';
 import Cart from './Cart';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 import CardManipulate from './CardManipulate';
 import { useAuth } from '../store/Auth';
@@ -15,10 +15,9 @@ function NonnontechnicalEvents() {
   const [events, setEvent] = useState([]);
   const [loading, setLoading] = useState(true); // Start with loading as true
   const [user, setUser] = useState(true); // Start with loading as true
-  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     try {
       const response = await fetch(`${API_URL}/api/event/nontechnicalevents`, {
         method: "GET",
@@ -54,7 +53,7 @@ function NonnontechnicalEvents() {
         navigate(-1);
       }, 5000);
     }
-  };
+  }, [navigate]);
  
   useEffect(() => {
     if(User){
@@ -64,6 +63,10 @@ function NonnontechnicalEvents() {
 
   useEffect(() => {
     fetchEvents();
+      document.title = `Eminance 2025 - NonTechnical Events`;
+  }, [fetchEvents]);
+  
+  useEffect(() => {
       document.title = `Eminance 2025 - NonTechnical Events`;
   }, []);
 
@@ -104,9 +107,9 @@ function NonnontechnicalEvents() {
                     <input type="hidden" name="userId" defaultValue="user_id_placeholder" /> {/* Replace with actual user ID */}
                   </form>
                   <div className="card-bottom crd-btm">
-                    <a href={`/nontechnicalEvents/${event.nontech_event_name}`} className="btn" style={{ backgroundColor: 'goldenrod', color: 'white' }}>
+                    <Link to={`/nontechnicalEvents/${event.nontech_event_name}`} className="btn" style={{ backgroundColor: 'goldenrod', color: 'white' }}>
                       Browse
-                    </a>
+                    </Link>
                     <Cart formId={event.nontech_event_name} category={"non-technical"} />
                   </div>
                 </div>

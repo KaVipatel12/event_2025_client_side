@@ -82,7 +82,6 @@ function EmailAuth() {
                 color: "#333",
                 display: "block",
                 marginBottom: "5px",
-                color: "white",
               }}
             >
               Email address
