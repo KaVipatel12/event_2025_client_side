@@ -92,6 +92,7 @@ function NonnontechnicalEvents() {
                   style={{ height: 200, objectFit: 'cover', width: "300px"}} 
                   className="card-img" 
                   alt={event.nontech_event_image} 
+                  loading="lazy"
                 />
 
                {user.controll && 

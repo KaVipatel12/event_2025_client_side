@@ -93,6 +93,7 @@ function TechnicalEvents() {
                     alt={event.tech_event_name}
                     className="card-img-top img-fluid"
                     style={{ height: "200px", objectFit: "cover", width: "300px" }}
+                    loading="lazy"
                   />
                   {user.controll === 2 && (
                     <CardManipulate eventId={event._id} fetchEvents={fetchEvents} />

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import useRef from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import "../Auth.css";
 import { useAuth } from "../store/Auth";
 import { toast } from 'react-toastify';
