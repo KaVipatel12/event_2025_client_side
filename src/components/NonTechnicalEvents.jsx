@@ -8,7 +8,7 @@ import Loading from './Loading';
 import CardManipulate from './CardManipulate';
 import { useAuth } from '../store/Auth';
 
-const API_URL = "process.env.REACT_APP_API_URL";
+const API_URL = process.env.REACT_APP_API_URL;
 
 function NonnontechnicalEvents() {
   const {User} = useAuth()
