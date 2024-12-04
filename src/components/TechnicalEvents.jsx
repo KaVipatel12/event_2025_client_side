@@ -104,9 +104,6 @@ function TechnicalEvents() {
                         ? event.tech_event_name.split("_").join(" ")
                         : "No Name Available"}
                     </h5>
-                    <p className="card-text">
-                      {event.tech_event_description.slice(0, 50) + "..."}
-                    </p>
                     <form
                       className="cartForm"
                       id={`eventForm${index}`}

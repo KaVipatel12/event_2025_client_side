@@ -8,7 +8,7 @@ import Loading from './Loading';
 import CardManipulate from './CardManipulate';
 import { useAuth } from '../store/Auth';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "process.env.REACT_APP_API_URL";
 
 function NonnontechnicalEvents() {
   const {User} = useAuth()
@@ -101,7 +101,6 @@ function NonnontechnicalEvents() {
 
                 <div className="card-body" style={{ width: "300px" }}>
                   <h5 className="card-title">{event.nontech_event_name.split('_').join(' ')}</h5>
-                  <p className="card-text">{event.nontech_event_description.slice(0, 50) + "..."}</p>
                   <form className="cartForm" id={`eventForm${index}`} action="/cartAdd" method="post">
                     <input type="hidden" name="eventId" defaultValue={event._id} />
                     <input type="hidden" name="eventName" defaultValue={event.nontech_event_name} />

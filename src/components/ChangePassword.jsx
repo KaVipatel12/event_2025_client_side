@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import Loading from './Loading';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -55,9 +54,6 @@ function ChangePassword() {
     return (
         <>
             <Navbar />
-            <center>
-              { loading && <Loading />}
-            </center>
             <div className="container" style={{ maxWidth: '500px', margin: 'auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                 <form onSubmit={updatePasswordAuth}>
                     <div className="mb-3" style={{ marginBottom: '15px' }}>
@@ -82,9 +78,19 @@ function ChangePassword() {
                             }}
                         />
                     </div>
+                    {loading ? (
+              <button class="btn btn-primary field" type="button" disabled>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  aria-hidden="true"
+                ></span>
+                <span role="status"> Verfying... </span>
+              </button>
+            ) :(
                     <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '10px', fontSize: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px' }}>
                         Submit
                     </button>
+            )}
                 </form>
             </div>
         </>

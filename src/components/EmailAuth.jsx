@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-import Loading from "./Loading";
 
 const API_URL = process.env.REACT_APP_API_URL;
 const SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY;
@@ -35,7 +34,7 @@ function EmailAuth() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data), // Ensure email is part of the JSON object
-        credentials: "include",
+        credentials: "include"
       });
 
       const result = await response.json();
@@ -44,7 +43,7 @@ function EmailAuth() {
         setLoader(false);
         localStorage.setItem("email", email);
         navigate("/verifyotp");
-        toast.success(result.msg);
+        toast.success(result.msg + " We have sent an otp to your Email");
       } else {
         setLoader(false);
         toast.error(result.msg);
@@ -60,7 +59,6 @@ function EmailAuth() {
   return (
     <>
       <Navbar />
-      <center>{loading && <Loading />}</center>
       <div
         className="container"
         style={{
@@ -113,6 +111,15 @@ function EmailAuth() {
               ref={captchaRef}
             />
           </div>
+          {loading ? (
+              <button class="btn btn-primary field" type="button" disabled>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  aria-hidden="true"
+                ></span>
+                <span role="status"> Processing... </span>
+              </button>
+            ) : (
           <button
             type="submit"
             className="btn btn-primary"
@@ -128,6 +135,7 @@ function EmailAuth() {
           >
             Submit
           </button>
+            )}
         </form>
       </div>
     </>
