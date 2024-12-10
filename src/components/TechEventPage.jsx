@@ -53,11 +53,7 @@ function TechEventPage() {
   }, [fetchEvent]);
 
   useEffect(() => {
-    if (User?.purchaseProduct) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
+    setLoggedIn(!!User?.purchaseProduct);
   }, [User]);
 
   useEffect(() => {
@@ -70,11 +66,20 @@ function TechEventPage() {
 
   const toggleExpand = () => setExpand((prev) => !prev);
 
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <center>
+          <Loading />
+        </center>
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
-      <center>{loading && <Loading />}</center>
-
       <div className="container">
         <Video />
       </div>
@@ -83,7 +88,6 @@ function TechEventPage() {
           heading={eventItem.tech_event_name?.split("_").join(" ") || "Event Title"}
           para={eventItem.tech_event_description || "Event Description"}
         />
-
         <div className="background" />
         <div className="container my-2 rules-container">
           <div className="text-container">
@@ -109,9 +113,27 @@ function TechEventPage() {
           </div>
         </div>
       </div>
-
-      {loggedIn &&
-        (!User?.purchaseProduct?.length ||
+      {!loggedIn ? (
+        <div className="fixed-bottom my-3">
+          <div className="container money-main-container">
+            <div className="card footer-wrapper">
+              <div className="card-body left-card">
+                <h5 className="card-title purchase-footer flex-card flex-card-title">
+                  Login to purchase this event:
+                </h5>
+                <Link
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Login
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (!User?.purchaseProduct?.length ||
           User.purchaseProduct.every((item) => item.product !== eventItem.tech_event_name)) && (
           <>
             <div className="fixed-bottom my-3">
@@ -133,8 +155,6 @@ function TechEventPage() {
                 </div>
               </div>
             </div>
-
-            {/* Modal */}
             <div
               className="modal fade"
               id="exampleModal"
