@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [User, setUser] = useState("");
+  const [loading, setLoading] = useState(true)
   const isLoggedIn = !!token
   const storeTokenLocalStorage = (serverToken) => {
     localStorage.setItem("token", serverToken);
@@ -22,6 +23,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
   const userAuthentication = async () => {
     try {
+      setLoading(true);
       if (token) {
         const response = await fetch(`${API_URL}/api/auth/user`, {
           method: "GET",
@@ -31,14 +33,18 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (response.ok) {
+          setLoading(false);
           const data = await response.json();
           setUser(data.msg);
         } else {
+          setLoading(false);
           console.log("User not found error");
         }
       }
     } catch (err) {
       console.log(err);
+    }finally{
+      setLoading(false);
     }
   };
     userAuthentication();
@@ -108,7 +114,8 @@ export const AuthProvider = ({ children }) => {
         storeTokenLocalStorage,
         LogoutUser,
         User,
-        purchaseEventsFromMainPage
+        purchaseEventsFromMainPage,
+        loading
       }}
     >
       {children}
