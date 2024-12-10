@@ -4,6 +4,7 @@ import Navbar from './Navbar';          // Navbar component
 import jsPDF from 'jspdf';              // For PDF generation
 import 'jspdf-autotable';               // For table formatting in PDF
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 function Profile() {
   const { User } = useAuth();           // Access user data from context or state
@@ -14,10 +15,12 @@ function Profile() {
   const [mobile, setMobile] = useState("NA");
   const [enrollment, setEnrollment] = useState("NA");
   const [loggedin, setLoggedin] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [purchasedEvents, setPurchasedEvents] = useState([]);
 
   useEffect(() => {
     if (User) {
+      setLoading(false)
       setEmail(User.email);
       setUsername(User.username);
       setCollege_name(User.college_name);
@@ -26,6 +29,8 @@ function Profile() {
       setEnrollment(User.enrollment);
       setPurchasedEvents(User.purchaseProduct || []);
       setLoggedin(true);
+    }else{
+      setLoading(false)
     }
   }, [User]);
 
@@ -60,6 +65,18 @@ function Profile() {
     // Save the PDF
     doc.save('profile_events.pdf');
   };
+ 
+  if (loading) {
+    // Display a loading spinner or message while loading
+    return (
+      <>
+        <Navbar />
+        <center>
+          <Loading />
+        </center>
+      </>
+    );
+  }
 
   return (
     <>

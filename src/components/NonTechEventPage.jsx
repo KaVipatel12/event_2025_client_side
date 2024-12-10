@@ -77,10 +77,21 @@ function NonTechEventPage() {
   useEffect(() => {
     document.title = `Eminance 2025 - ${nontechnicalevent.split("_").join(" ")}` || "Eminance 2025";
      }, [nontechnicalevent]);
+
+     if (loading) {
+      return (
+        <>
+          <Navbar />
+          <center>
+            <Loading />
+          </center>
+        </>
+      );
+    }
+  
   return (
     <>
       <Navbar />
-      <center>{loading && <Loading />}</center>
       <div>
         <div className="container">
           <Video />
