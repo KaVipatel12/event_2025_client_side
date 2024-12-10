@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../Auth.css";
 import { useAuth } from "../store/Auth";
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import ReCAPTCHA from "react-google-recaptcha"
 
 const API_URL = process.env.REACT_APP_API_URL;
-const SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY; 
 
 function Registration() {
   const [email, setEmail] = useState('');
@@ -18,19 +16,16 @@ function Registration() {
   const [enrollment, setEnrollment] = useState('');
   const [showPassword, setShowPassword] = useState(true);
   const { storeTokenLocalStorage } = useAuth();
-  const [recaptcha, setRecaptcha] = useState("");
-  const captchaRef = useRef()
   const [loading , setLoader] = useState(false); 
   const navigate = useNavigate();
 
   const userData = {
-    email, password, username, college_name, department, mobile, enrollment, recaptcha
+    email, password, username, college_name, department, mobile, enrollment
   };
 
   const handleRegistrationSubmit = async (e) => {
     e.preventDefault();
 
-    captchaRef.current.reset(); 
     setLoader(true)
     try {
       const response = await fetch(`${API_URL}/api/auth/register`, {
@@ -160,20 +155,6 @@ function Registration() {
             />
             <label>Enrollment number</label>
           </div>
-            <div className="form-group mt-2">
-              <ReCAPTCHA 
-               sitekey={SITE_KEY }
-               onChange={(value) => {setRecaptcha(value)}}
-               ref={captchaRef}
-              />
-            </div>
-          <div className="content">
-            <div className="checkbox">
-              <input type="checkbox" id="remember-me" />
-              <label htmlFor="remember-me">Remember me</label>
-            </div>
-          </div>
-
 
           {loading ? (
               <button class="btn btn-primary field" type="button" disabled>

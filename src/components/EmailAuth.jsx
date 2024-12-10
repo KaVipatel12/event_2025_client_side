@@ -1,25 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import ReCAPTCHA from "react-google-recaptcha";
 
 const API_URL = process.env.REACT_APP_API_URL;
-const SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY;
 
 function EmailAuth() {
   const [email, setEmail] = useState("");
   const [loading, setLoader] = useState(false);
-  const [recaptcha, setRecaptcha] = useState("");
-  const captchaRef = useRef();
   const navigate = useNavigate();
   const data = {
-    email,
-    recaptcha
-  };
+    email  };
   const fetchEmailAuth = async (e) => {
     e.preventDefault();
-    captchaRef.current.reset();
     setLoader(true);
     // Check if email is present before sending the request
     if (!email) {
@@ -102,15 +95,7 @@ function EmailAuth() {
               }}
             />
           </div>
-          <div className="form-group mt-2">
-            <ReCAPTCHA
-              sitekey={SITE_KEY}
-              onChange={(value) => {
-                setRecaptcha(value);
-              }}
-              ref={captchaRef}
-            />
-          </div>
+
           {loading ? (
               <button class="btn btn-primary field" type="button" disabled>
                 <span

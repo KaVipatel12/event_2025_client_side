@@ -1,32 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Auth.css";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
-import ReCAPTCHA from "react-google-recaptcha"
 
 const API_URL = process.env.REACT_APP_API_URL;
-const SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY; 
 
 function Login() {
   // State for managing form inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [recaptcha, setRecaptcha] = useState("");
   const [loader, setLoading] = useState(false);
-  const captchaRef = useRef()
   const navigate = useNavigate();
   const { storeTokenLocalStorage } = useAuth();
   const userData = {
     email,
-    password,
-    recaptcha
-  };
+    password
+   };
 
   const handelLoginSubmit = async (e) => {
     e.preventDefault();
 
-    captchaRef.current.reset(); 
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}/api/auth/login`, {
@@ -96,14 +90,7 @@ function Login() {
               />
               <label>Password</label>
             </div>
-            
-            <div className="form-group mt-2">
-              <ReCAPTCHA 
-               sitekey={SITE_KEY }
-               onChange={(value) => {setRecaptcha(value)}}
-               ref={captchaRef}
-              />
-            </div>
+      
             <div className="content">
               {/* Remember me checkbox */}
               <div className="checkbox">
