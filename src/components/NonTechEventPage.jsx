@@ -120,6 +120,26 @@ function NonTechEventPage() {
 
 
       </div>
+      {!loggedIn && (
+              <div className="fixed-bottom my-3">
+                <div className="container money-main-container">
+                  <div className="card footer-wrapper">
+                    <div className="card-body left-card">
+                      <h5 className="card-title purchase-footer flex-card flex-card-title">
+                        Login to purchase this event:
+                      </h5>
+                      <Link to="/login"
+                        type="button"
+                        className="btn btn-primary"
+                      >
+                        Login
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      )}
+      
       {loggedIn && (user.length === 0 || user.every(element => element.product !== eventItem.nontech_event_name)) && (
         <>
          <div className="fixed-bottom my-3">
