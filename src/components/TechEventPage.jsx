@@ -121,11 +121,9 @@ function TechEventPage() {
                 <h5 className="card-title purchase-footer flex-card flex-card-title">
                   Login to purchase this event:
                 </h5>
-                <Link
+                <Link to="/login"
                   type="button"
                   className="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
                 >
                   Login
                 </Link>

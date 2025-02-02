@@ -72,7 +72,7 @@ body.dark {
   background-color: var(--white-color);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 15px 30px;
   z-index: 1000;
   box-shadow: 0 0 2px var(--grey-color-light);
